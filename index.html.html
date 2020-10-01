@@ -1,0 +1,250 @@
+<html><head><style>body {
+   color: black;
+}
+</style></head><body><h1 id="cs-194-project-2">CS 194 Project 2</h1>
+<p></p>
+<h2 id="algorithms">Algorithms</h2>
+<ul>
+<li><p>Partial Derivative</p>
+<p>To compute the partial derivatives of an image, I took the vectors [[1, -1]] and [[1], [-1]] and convolved it with the image. To get the gradient, I squared the partials and summed  them, then took the  square root. 
+ 
+</p>
+</li>
+<li><p>Gaussian Filter</p>
+<p>To create a Gaussian Filter, I took a 1d gaussian kernel, and took the  outer product with it&#39;s transpose.The derivative of the gaussian also showed the edges, but with less noise.Because of the  commutativity of convolution, both methods give the same result.
+
+</p>
+</li>
+<li><p>Straightening</p>
+<p>To straighten, I started by rotating the 
+image by angles from -90 to 90, 10 degrees at a time. For each rotated image, I cropped the image, and applied a gaussian filter to the image. Then, I computed the gradient of this image, and used arctan to compute the angles. In order to count the significant angles only, I only took angles where the magnitude of the gradient was above a certain threshold. Then, I took the maximum number of angles near pi/2 or 0. Once I found the max angle, I did a local search from angle -5 degrees to angle + 5 degrees to optimize the straightening. </p>
+</li>
+<li><p>Sharpening</p>
+<p>To sharpen images, I created an unsharp mask filter. This was made by first creating a unit impulse and subtracting a 2d gaussian filter from it. </p>
+</li>
+</ul>
+<ul>
+<li><p>Hybrid Images</p>
+<p>To hybridize an image, I summed the low frequencies of 1 image and the high frequencies of another. Low frequencies were obtained by applying a gaussian filter, while high frequencies used the impulse minus the gaussian. </p>
+</li>
+<li><p>Gaussian and Laplacian Stacks</p>
+<p>I made the gaussian stack first by repeatedly applying a 2d gaussian for each level of the stack. Then, for the laplacian stack, I took the difference of each neighboring level of the gaussian stack.</p>
+</li>
+<li><p>Image Splining</p>
+<p>Once gaussian and laplacian stacks were implemented, I could implement image splining by 
+summing the laplacian stacks of each image. For each layer, I weighted the contribution depending  on the gaussian of a masking region that defined where the image should be splined.
+
+
+</p>
+</li>
+</ul>
+<h2 id="images">Images</h2>
+<h2 id="further-improvement">
+<p><img src="cameraman.png" alt="temp" width="600"></p>
+
+<p><img src="camx.jpg" alt="temp" width="600"></p>
+
+<p><img src="camy.jpg" alt="temp" width="600"></p>
+
+<p><img src="camgradbin.jpg" alt="temp" width="600"></p>
+
+<p><img src="camgaussgrad.jpg" alt="temp" width="600"></p>
+
+<p><img src="camgaussgradbin.jpg" alt="temp" width="600"></p>
+
+<p><img src="stfacade.jpg" alt="temp" width="600"></p>
+Straightened image.
+
+<p><img src="facade.jpg" alt="temp" width="600"></p>
+Original Image.
+
+<p><img src="facadehist.jpg" alt="temp" width="600"></p>
+Edge Histogram
+
+<p><img src="stland.jpg" alt="temp" width="600"></p>
+Straightened landscape image.
+
+<p><img src="landscape.jpg" alt="temp" width="600"></p>
+Original  image.
+
+<p><img src="landhist.jpg" alt="temp" width="600"></p>
+Edge histogram..
+
+<p><img src="stnyc.jpg" alt="temp" width="600"></p>
+Somewhat failure case of straightened image. Since the straightening algorithm values both horizontal and vertical angles, in this case the horizontal angles were prioritized.
+
+<p><img src="nyc.jpg" alt="temp" width="600"></p>
+Original Image.
+
+<p><img src="nychist.jpg" alt="temp" width="600"></p>
+Edge Histogram
+
+<p><img src="stpisa.jpg" alt="temp" width="600"></p>
+Similar to the issues in the above picture, but it also attempted to straighten a straight picture. It could not recognize that the leaning tower of pisa should, in fact, be leaning.
+
+<p><img src="pisa2.jpeg" alt="temp" width="600"></p>
+Original Picture
+
+<p><img src="pisahist.jpg" alt="temp" width="600"></p>
+Edge Histogram
+
+<p><img src="shtaj.jpg" alt="temp" width="600"></p>
+Sharpened Image
+
+<p><img src="taj.jpg" alt="temp" width="600"></p>
+Original Image
+
+<p><img src="blurred4k.jpg" alt="temp" width="600"></p>
+Blurred Image
+
+<p><img src="resharpened4k.jpg" alt="temp" width="600"></p>
+Resharpened Image
+
+<p><img src="4k.jpg" alt="temp" width="600"></p>
+Original Image
+
+<p><img src="jay1.jpg" alt="temp" width="600"></p>
+Original picture of my friend
+
+<p><img src="jay2.png" alt="temp" width="600"></p>
+Original picture of a girl with a different expression
+
+<p><img src="jay3.jpg" alt="temp" width="600"></p>
+Hybrid photo
+
+<p><img src="khoa.jpg" alt="temp" width="600"></p>
+Original picture of my friend
+
+<p><img src="rat.jpg" alt="temp" width="600"></p>
+Original picture  of the rat
+
+<p><img src="khoarat.png" alt="temp" width="600"></p>
+Hybrid photo
+
+<p><img src="fft1.jpg" alt="temp" width="600"></p>
+Fourier  analysis of low frequencies of hybrid  photo.
+
+<p><img src="fft2.jpg" alt="temp" width="600"></p>
+Fourier analysis of high frequencies of hybrid  photo.
+
+<p><img src="hybridfft.jpg" alt="temp" width="600"></p>
+Fourier analysis of hybrid photo.
+
+<p><img src="khoafft.jpg" alt="temp" width="600"></p>
+Fourier analysis of  original picture of my friend.
+
+<p><img src="ratfft.jpg" alt="temp" width="600"></p>
+Fourier  analysis of original picture of the rat.
+
+<p><img src="ted.jpg" alt="temp" width="600"></p>
+Original picture of my friend.
+
+<p><img src="gorilla.png" alt="temp" width="600"></p>
+Original picture  of a gorilla.
+
+<p><img src="ted2.jpg" alt="temp" width="600"></p>
+Hybrid photo. This one was somewhat of a failure case since the different body shapes made alignment very difficult. 
+
+
+The  following is the gaussian stack of the picture of my friend and a  rat.
+<p><img src="khoaratgausss0.jpg" alt="temp" width="600"></p>
+
+<p><img src="khoaratgausss1.jpg" alt="temp" width="600"></p>
+
+<p><img src="khoaratgausss2.jpg" alt="temp" width="600"></p>
+
+<p><img src="khoaratgausss3.jpg" alt="temp" width="600"></p>
+
+<p><img src="khoaratgausss4.jpg" alt="temp" width="600"></p>
+
+The  following is the laplacian stack of the picture of my friend and a  rat.
+
+<p><img src="khoaratlaplace0.jpg" alt="temp" width="600"></p>
+
+<p><img src="khoaratlaplace1.jpg" alt="temp" width="600"></p>
+
+<p><img src="khoaratlaplace2.jpg" alt="temp" width="600"></p>
+
+<p><img src="khoaratlaplace3.jpg" alt="temp" width="600"></p>
+
+<p><img src="khoaratlaplace4.jpg" alt="temp" width="600"></p>
+
+The  following is the gaussian stack of an orange.
+
+<p><img src="orapplegausss0.jpg" alt="temp" width="600"></p>
+
+<p><img src="orapplegausss1.jpg" alt="temp" width="600"></p>
+
+<p><img src="orapplegausss2.jpg" alt="temp" width="600"></p>
+
+<p><img src="orapplegausss3.jpg" alt="temp" width="600"></p>
+
+<p><img src="orapplegausss4.jpg" alt="temp" width="600"></p>
+
+The  following is the laplacian stack of an orange.
+
+<p><img src="orapplelaplace0.jpg" alt="temp" width="600"></p>
+
+<p><img src="orapplelaplace1.jpg" alt="temp" width="600"></p>
+
+<p><img src="orapplelaplace2.jpg" alt="temp" width="600"></p>
+
+<p><img src="orapplelaplace3.jpg" alt="temp" width="600"></p>
+
+<p><img src="orapplelaplace4.jpg" alt="temp" width="600"></p>
+
+The  following is the gaussian stack of the mona lisa.
+
+<p><img src="monagauss0.jpg" alt="temp" width="600"></p>
+
+<p><img src="monagauss1.jpg" alt="temp" width="600"></p>
+
+<p><img src="monagauss2.jpg" alt="temp" width="600"></p>
+
+<p><img src="monagauss3.jpg" alt="temp" width="600"></p>
+
+<p><img src="monagauss4.jpg" alt="temp" width="600"></p>
+
+The  following is the laplacian stack of the mona lisa.
+
+<p><img src="monalaplace0.jpg" alt="temp" width="600"></p>
+
+<p><img src="monalaplace1.jpg" alt="temp" width="600"></p>
+
+<p><img src="monalaplace2.jpg" alt="temp" width="600"></p>
+
+<p><img src="monalaplace3.jpg" alt="temp" width="600"></p>
+
+<p><img src="monalaplace4.jpg" alt="temp" width="600"></p>
+
+<p><img src="orange.jpeg" alt="temp" width="600"></p>
+Original photo of orange.
+
+<p><img src="apple.jpeg" alt="temp" width="600"></p>
+Original  photo of apple.
+
+<p><img src="orapple.jpg" alt="temp" width="600"></p>
+Splined orapple.
+
+<p><img src="pepsi.jpg" alt="temp" width="600"></p>
+Pepsi photo.
+
+<p><img src="sprite.png" alt="temp" width="600"></p>
+Sprite photo.
+
+<p><img src="pepsprite.jpg" alt="temp" width="600"></p>
+Splined pepsprite. Backgrounds should've been the same color for better splining.
+
+<p><img src="monaface.jpg" alt="temp" width="600"></p>
+Face of mona lisa.
+
+<p><img src="sun.jpg" alt="temp" width="600"></p>
+The sun.
+
+<p><img src="monsun.jpg" alt="temp" width="600"></p>
+Teletubbies style spline of the Mona Lisa and the sun.
+
+
+Further improvement</h2>
+<p>Hybrid images could be further optimized by modifying parameters. Splining could also be made smoother by using a better mask as well as changing the gaussian kernel size for the mask.  </p>
+</body></html>
